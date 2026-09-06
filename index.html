@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Ahmed ♡</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-start: #fbf3f4;
+            --bg-end: #f2cdd4;
+            --text-main: #3d242b;
+            --accent-rose: #be5b72;
+            --accent-deep: #701c31;
+            --card-glass: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(255, 255, 255, 0.95);
+            --shadow-soft: 0 15px 35px rgba(112, 28, 49, 0.08);
+            --shadow-dramatic: 0 25px 60px rgba(112, 28, 49, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: radial-gradient(circle at 50% 30%, var(--bg-start) 0%, var(--bg-end) 100%);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Floating Background Ambient Glow */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: rgba(190, 91, 114, 0.25);
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Floating Hearts Background */
+        .hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            font-size: 1.2rem;
+            color: rgba(190, 91, 114, 0.35);
+            animation: floatUp 8s infinite linear;
+            filter: drop-shadow(0 2px 4px rgba(190, 91, 114, 0.2));
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-105vh) scale(1.3) rotate(360deg); opacity: 0; }
+        }
+
+        /* Main Glassmorphism Card Container */
+        .story-card {
+            width: 92%;
+            max-width: 500px;
+            height: 88vh;
+            max-height: 760px;
+            background: var(--card-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 32px;
+            box-shadow: var(--shadow-soft);
+            padding: 26px 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        /* Letter Slide Visual Glow */
+        .story-card.letter-mode {
+            background: rgba(255, 255, 255, 0.93);
+            box-shadow: var(--shadow-dramatic), 0 0 50px rgba(190, 91, 114, 0.2);
+            border: 1px solid rgba(190, 91, 114, 0.3);
+        }
+
+        /* Faded Background Image Overlay */
+        .letter-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('ahmed.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.16;
+            filter: contrast(105%) brightness(98%);
+            z-index: 0;
+            pointer-events: none;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Sleek Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background: rgba(190, 91, 114, 0.15);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-rose), var(--accent-deep));
+            border-radius: 3px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Content Wrapper */
+        .content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            overflow: hidden;
+            padding: 0 4px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Staggered Line Fade Animation */
+        .animate-line {
+            opacity: 0;
+            animation: fadeUpLine 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.25s; }
+        .delay-3 { animation-delay: 0.4s; }
+        .delay-4 { animation-delay: 0.55s; }
+        .delay-5 { animation-delay: 0.7s; }
+        .delay-6 { animation-delay: 0.85s; }
+
+        @keyframes fadeUpLine {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            letter-spacing: 5px;
+            color: var(--accent-deep);
+            font-weight: 500;
+            text-shadow: 0 2px 10px rgba(112, 28, 49, 0.08);
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.1rem;
+            color: var(--accent-deep);
+            font-weight: 600;
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Memory Cards Grid */
+        .memory-cards-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .memory-card {
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(190, 91, 114, 0.18);
+            border-radius: 16px;
+            padding: 10px 14px;
+            text-align: left;
+            font-size: 0.85rem;
+            line-height: 1.45;
+            color: var(--text-main);
+            box-shadow: 0 4px 12px rgba(112, 28, 49, 0.03);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(112, 28, 49, 0.08);
+            border-color: rgba(190, 91, 114, 0.35);
+        }
+
+        .memory-card .icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .memory-card strong {
+            color: var(--accent-deep);
+            font-weight: 600;
+        }
+
+        /* Interactive Reveal Cards */
+        .reveal-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .reveal-card {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(190, 91, 114, 0.25);
+            border-radius: 16px;
+            padding: 11px 14px;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(112, 28, 49, 0.04);
+        }
+
+        .reveal-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-rose);
+            box-shadow: 0 8px 20px rgba(190, 91, 114, 0.12);
+        }
+
+        .reveal-header {
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--accent-deep);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tap-prompt {
+            font-size: 0.72rem;
+            color: var(--accent-rose);
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .secret-body {
+            display: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.12rem;
+            line-height: 1.42;
+            color: #2e181e;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed rgba(190, 91, 114, 0.22);
+            font-style: italic;
+            animation: fadeUpLine 0.4s ease forwards;
+        }
+
+        .reveal-card.open {
+            background: rgba(255, 255, 255, 0.96);
+            border-color: var(--accent-rose);
+            box-shadow: 0 8px 24px rgba(190, 91, 114, 0.18);
+        }
+
+        .reveal-card.open .secret-body { display: block; }
+        .reveal-card.open .tap-prompt { display: none; }
+
+        /* Badges for Traits */
+        .traits-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .trait-badge {
+            background: rgba(190, 91, 114, 0.08);
+            border: 1px solid rgba(190, 91, 114, 0.22);
+            padding: 10px 16px;
+            border-radius: 18px;
+            font-size: 0.88rem;
+            color: var(--accent-deep);
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(112, 28, 49, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .trait-badge:hover {
+            transform: scale(1.02);
+            background: rgba(190, 91, 114, 0.12);
+        }
+
+        .highlight-badge {
+            background: linear-gradient(135deg, rgba(112, 28, 49, 0.12), rgba(190, 91, 114, 0.22));
+            border: 1.5px solid var(--accent-rose);
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(190, 91, 114, 0.15);
+        }
+
+        /* Promises Container */
+        .promises-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .promise-card {
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px dashed rgba(190, 91, 114, 0.32);
+            padding: 11px 14px;
+            border-radius: 16px;
+            font-size: 0.86rem;
+            color: var(--text-main);
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 3px 10px rgba(112, 28, 49, 0.03);
+            line-height: 1.38;
+        }
+
+        .promise-card span { font-size: 1.1rem; flex-shrink: 0; }
+
+        /* Nav Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 14px;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--accent-deep) 0%, var(--accent-rose) 100%);
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 30px;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.84rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(112, 28, 49, 0.25);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            flex: 1;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.6);
+            color: var(--accent-rose);
+            border: 1.5px solid var(--accent-rose);
+            box-shadow: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 10px 24px rgba(112, 28, 49, 0.32);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(190, 91, 114, 0.08);
+        }
+
+        /* Final Letter Layout */
+        .letter-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .seal-icon {
+            font-size: 2rem;
+            margin-bottom: 2px;
+            animation: pulseSeal 2.5s infinite ease-in-out;
+            filter: drop-shadow(0 2px 6px rgba(190, 91, 114, 0.3));
+        }
+
+        @keyframes pulseSeal {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.15); opacity: 1; }
+        }
+
+        .letter-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.9rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--accent-deep);
+            margin-bottom: 12px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: 1.5px;
+        }
+
+        .letter-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-rose), transparent);
+        }
+
+        .letter-content {
+            text-align: left;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.08rem;
+            line-height: 1.48;
+            color: #2b1319;
+            width: 100%;
+        }
+
+        .letter-content p {
+            margin-bottom: 7px;
+        }
+
+        .letter-highlight {
+            font-weight: 600;
+            color: var(--accent-deep);
+            font-size: 1.15rem;
+            letter-spacing: 0.3px;
+        }
+
+        .signature-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 6px;
+        }
+
+        .ps-note {
+            font-size: 0.78rem;
+            color: var(--accent-rose);
+            font-style: italic;
+            cursor: pointer;
+            max-width: 65%;
+            line-height: 1.35;
+            transition: color 0.3s ease;
+        }
+
+        .ps-note:hover {
+            color: var(--accent-deep);
+        }
+
+        .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.3rem;
+            color: var(--accent-deep);
+            text-align: right;
+            line-height: 1;
+            filter: drop-shadow(0 2px 4px rgba(112, 28, 49, 0.15));
+        }
+
+        /* Thank You Slide Styling */
+        .thankyou-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        .thankyou-icon {
+            font-size: 2.5rem;
+            animation: pulseSeal 3s infinite ease-in-out;
+        }
+
+        .thankyou-card-box {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(190, 91, 114, 0.25);
+            border-radius: 20px;
+            padding: 22px 18px;
+            box-shadow: 0 6px 20px rgba(112, 28, 49, 0.05);
+            backdrop-filter: blur(10px);
+            margin: 8px 0;
+            width: 100%;
+        }
+
+        .thankyou-subtext {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-style: italic;
+            color: var(--accent-deep);
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .thankyou-body {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        .thankyou-signoff {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            color: var(--accent-deep);
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .tagline {
+            font-size: 0.82rem;
+            letter-spacing: 3.5px;
+            color: var(--accent-rose);
+            text-transform: uppercase;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            line-height: 1.65;
+            color: var(--accent-deep);
+            font-style: italic;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(190, 91, 114, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Music Element & Music Button -->
+    <audio id="bg-music" src="song.mp3" loop></audio>
+    <button id="music-btn" onclick="toggleMusic()" style="position: fixed; top: 18px; right: 18px; z-index: 999; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(8px); border: 1px solid rgba(190, 91, 114, 0.3); padding: 8px 14px; border-radius: 20px; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: #701c31; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: all 0.3s ease;">🎵 Play Music</button>
+
+    <!-- Animated Floating Hearts -->
+    <div class="hearts-container" id="hearts-bg"></div>
+
+    <div class="story-card" id="main-card">
+        <!-- Faded Photo Container for Final Letter -->
+        <div id="letter-bg" class="letter-bg-image" style="display: none;"></div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+
+        <div class="content" id="card-content">
+            <!-- Content Injected via JS -->
+        </div>
+
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" id="back-btn" onclick="prevSlide()">← Back</button>
+            <button class="btn" id="next-btn" onclick="nextSlide()">Continue →</button>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="burp-audio" src="burp.mp3.ogg" preload="auto"></audio>
+
+    <script>
+        // Music toggle function
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const btn = document.getElementById('music-btn');
+            if (music.paused) {
+                music.play();
+                btn.innerText = '⏸️ Pause';
+                btn.style.background = 'rgba(190, 91, 114, 0.15)';
+            } else {
+                music.pause();
+                btn.innerText = '🎵 Play Music';
+                btn.style.background = 'rgba(255, 255, 255, 0.75)';
+            }
+        }
+
+        // Generate Floating Background Hearts
+        function createHearts() {
+            const container = document.getElementById('hearts-bg');
+            const heartIcons = ['♡', '✨', '🌸', '🤍', '💖'];
+            for (let i = 0; i < 18; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 6}s`;
+                heart.style.animationDuration = `${5 + Math.random() * 5}s`;
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // Play Audio Function
+        function playBurpAudio() {
+            const audio = document.getElementById('burp-audio');
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play().catch(err => {
+                    alert("Audio file 'burp.mp3.ogg' not found in folder! 🔊");
+                });
+            }
+        }
+
+        function toggleCard(card) {
+            card.classList.toggle('open');
+        }
+
+        const slides = [
+            // Opening
+            { 
+                type: 'title', 
+                title: 'AHMED', 
+                sub: 'THIS ONE IS FOR YOU ♡' 
+            },
+            { 
+                type: 'text', 
+                title: 'I made something for you.', 
+                body: `<div class="animate-line delay-2" style="text-align:center; font-size:1.1rem; line-height:1.6; background: rgba(255, 255, 255, 0.6); padding: 20px; border-radius: 20px; border: 1px solid rgba(190, 91, 114, 0.2);">Take your time and enjoy every single moment. ♡</div>` 
+            },
+            { 
+                type: 'quote', 
+                body: '"Before you read anything… just know that I made this because there are so many little things about you that I notice, remember, and love."' 
+            },
+            
+            // OVERVIEW SLIDE
+            { 
+                type: 'text', 
+                title: 'All The Things About You ♡', 
+                body: `
+                    <div class="memory-cards-grid">
+                        <div class="memory-card animate-line delay-1">
+                            <span class="icon">🌸</span>
+                            <div>Your <strong>smile</strong> that instantly calms my heart & your <strong>voice</strong>—my favorite sound.</div>
+                        </div>
+                        <div class="memory-card animate-line delay-2">
+                            <span class="icon">✨</span>
+                            <div>Your <strong>grounded personality</strong>, warm hands, and quiet discipline.</div>
+                        </div>
+                        <div class="memory-card animate-line delay-3">
+                            <span class="icon">💭</span>
+                            <div>The <strong>future goals</strong> you share about us & every sacrifice of sleep you make for me.</div>
+                        </div>
+                        <div class="memory-card animate-line delay-4">
+                            <span class="icon">🤍</span>
+                            <div>Calling me whenever I get upset, <strong>checking on me</strong> during exams, and asking if I've eaten.</div>
+                        </div>
+                        <div class="memory-card animate-line delay-5">
+                            <span class="icon">🤭</span>
+                            <div>Your <strong>playful teasing</strong>, fake-crying, cute anger, and funny voice notes.</div>
+                        </div>
+                    </div>
+                ` 
+            },
+            
+            // REVEAL SLIDE FOR NOTICED MEMORIES
+            { 
+                type: 'text', 
+                title: "Things You Don't Realize I Notice ♡", 
+                body: `
+                    <div class="reveal-container">
+                        <div class="reveal-card animate-line delay-1" onclick="toggleCard(this)">
+                            <div class="reveal-header">
+                                <span>🚗 First Meeting Memory</span>
+                                <span class="tap-prompt">Tap to see my secret reaction 🤫</span>
+                            </div>
+                            <div class="secret-body">"When you opened the car door when we first met... I pretended to be calm, but my heart was racing thinking, 'He is such a gentleman.'"</div>
+                        </div>
+
+                        <div class="reveal-card animate-line delay-2" onclick="toggleCard(this)">
+                            <div class="reveal-header">
+                                <span>🍽️ McDonald's Airport Gesture</span>
+                                <span class="tap-prompt">Tap to see my secret reaction 🤫</span>
+                            </div>
+                            <div class="secret-body">"The way you pulled out the chair for me at McDonald's... it was so natural, but it made me feel like the most cherished girl in the room."</div>
+                        </div>
+
+                        <div class="reveal-card animate-line delay-3" onclick="toggleCard(this)">
+                            <div class="reveal-header">
+                                <span>🥤 The Milkshake Moment</span>
+                                <span class="tap-prompt">Tap to see my secret reaction 🤫</span>
+                            </div>
+                            <div class="secret-body">"The way you made me sip your milkshake first... it was so sweet, I still smile thinking about it."</div>
+                        </div>
+
+                        <div class="reveal-card animate-line delay-4" onclick="toggleCard(this)">
+                            <div class="reveal-header">
+                                <span>🔐 Your Sweet Protectiveness</span>
+                                <span class="tap-prompt">Tap to see my secret reaction 🤫</span>
+                            </div>
+                            <div class="secret-body">"The possessiveness you show for me... which I secretly love so much and always make me feel adored."</div>
+                        </div>
+
+                        <div class="reveal-card animate-line delay-5" onclick="toggleCard(this)">
+                            <div class="reveal-header">
+                                <span>🏎️ Driving Together</span>
+                                <span class="tap-prompt">Tap to see my secret reaction 🤫</span>
+                            </div>
+                            <div class="secret-body">"The way you drove with one hand while holding my hand with the other... I kept looking out the window hiding a huge grin."</div>
+                        </div>
+                    </div>
+                ` 
+            },
+
+            // TRAITS SLIDE
+            { 
+                type: 'text', 
+                title: 'What Makes You You ♡', 
+                body: `
+                    <div class="traits-grid">
+                        <div class="trait-badge animate-line delay-1">✨ Respectful in every single way</div>
+                        <div class="trait-badge animate-line delay-2">🤍 Extremely caring & protective</div>
+                        <div class="trait-badge animate-line delay-3">🌸 Incredibly polite and patient</div>
+                        <div class="trait-badge animate-line delay-4">🕊️ Soft-spoken with a sweet heart</div>
+                        <div class="trait-badge animate-line delay-5">🎩 A genuine, true gentleman</div>
+                        <div class="trait-badge highlight-badge animate-line delay-6">👑 And to me… you are the bestest man. ♡</div>
+                    </div>
+                ` 
+            },
+
+            // PROMISES SLIDE
+            { 
+                type: 'text', 
+                title: 'Promises To My Heart ♡', 
+                body: `
+                    <div class="promises-container">
+                        <div class="promise-card animate-line delay-1"><span>💌</span> I love you deeply, even when I struggle to say it out loud.</div>
+                        <div class="promise-card animate-line delay-2"><span>🌙</span> I miss you endlessly all day long while you're at work.</div>
+                        <div class="promise-card animate-line delay-3"><span>🗝️</span> I trust you completely with the deepest core of my heart.</div>
+                        <div class="promise-card animate-line delay-4"><span>🛡️</span> Your presence alone makes me feel endlessly safe & secure.</div>
+                        <div class="promise-card animate-line delay-5"><span>✨</span> No matter what comes our way, I will always be right here for you.</div>
+                    </div>
+                ` 
+            },
+
+            // FINAL LETTER SLIDE
+            { 
+                type: 'letter', 
+                body: `
+                    <div class="letter-wrapper">
+                        <div class="seal-icon animate-line delay-1">✉️</div>
+                        <div class="letter-heading animate-line delay-1">One Last Thing ♡</div>
+                        <div class="letter-content">
+                            <p class="animate-line delay-2">To My Future Husband,</p>
+                            <p class="animate-line delay-3">I built this little place because words said in passing aren't always enough to hold everything I feel for you.</p>
+                            <p class="animate-line delay-4">From opening doors and holding hands while driving to calling when I'm upset and checking in during exams—I see and treasure every single thing you do.</p>
+                            <p class="letter-highlight animate-line delay-5">I love you a lot, more than words could ever express. I notice you, I remember you, and I appreciate you endlessly.</p>
+                            <p class="animate-line delay-6">I can't wait to marry you and build our entire life together. Until then, I'll keep loving and waiting for all our beautiful days ahead.</p>
+                            <div class="signature-block animate-line delay-6">
+                                <div class="ps-note" onclick="playBurpAudio()">P.S. I still haven't forgotten <span style="text-decoration:underline; font-weight:600;">that recording</span>! 🔊🤍</div>
+                                <div class="signature">Love,<br>Fabiha ♡</div>
+                            </div>
+                        </div>
+                    </div>
+                ` 
+            },
+            
+            // REDESIGNED THANK YOU SLIDE
+            { 
+                type: 'thankyou', 
+                body: `
+                    <div class="thankyou-wrapper">
+                        <div class="thankyou-icon animate-line delay-1">🌸</div>
+                        <h2 class="animate-line delay-2">Thank You</h2>
+                        <div class="thankyou-card-box animate-line delay-3">
+                            <div class="thankyou-subtext">"Thank you for being you."</div>
+                            <div class="thankyou-body">Some things are difficult to say out loud, so I made you a little place where you can read them instead.</div>
+                        </div>
+                        <div class="thankyou-signoff animate-line delay-4">
+                            Made with love,<br>
+                            <strong style="font-family:'Great Vibes', cursive; font-size:2.2rem; color: var(--accent-deep); font-weight:normal;">Fabiha ♡</strong>
+                        </div>
+                    </div>
+                ` 
+            }
+        ];
+
+        let currentSlide = 0;
+
+        function renderSlide() {
+            const container = document.getElementById('card-content');
+            const card = document.getElementById('main-card');
+            const slide = slides[currentSlide];
+            const progress = document.getElementById('progress');
+            const letterBg = document.getElementById('letter-bg');
+
+            progress.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
+            document.getElementById('back-btn').style.visibility = currentSlide === 0 ? 'hidden' : 'visible';
+            
+            const nextBtn = document.getElementById('next-btn');
+            if (currentSlide === slides.length - 1) {
+                nextBtn.innerText = 'Replay ♡';
+            } else if (currentSlide === 0) {
+                nextBtn.innerText = 'Open It ♡';
+            } else {
+                nextBtn.innerText = 'Continue →';
+            }
+
+            if (slide.type === 'letter') {
+                card.classList.add('letter-mode');
+                letterBg.style.display = 'block';
+            } else {
+                card.classList.remove('letter-mode');
+                letterBg.style.display = 'none';
+            }
+
+            if (slide.type === 'title') {
+                container.innerHTML = `<h1 class="animate-line delay-1">${slide.title}</h1><div class="tagline animate-line delay-2">${slide.sub}</div>`;
+            } else if (slide.type === 'quote') {
+                container.innerHTML = `${slide.title ? '<h2 class="animate-line delay-1">' + slide.title + '</h2>' : ''}<div class="quote animate-line delay-2">${slide.body}</div>`;
+            } else if (slide.type === 'letter' || slide.type === 'thankyou') {
+                container.innerHTML = slide.body;
+            } else {
+                container.innerHTML = `<h2 class="animate-line delay-1">${slide.title}</h2>${slide.body}`;
+            }
+        }
+
+        function nextSlide() {
+            // Auto start background music when opening first slide
+            if (currentSlide === 0) {
+                const music = document.getElementById('bg-music');
+                if (music.paused) {
+                    music.play().catch(() => {});
+                    document.getElementById('music-btn').innerText = '⏸️ Pause';
+                }
+            }
+
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+            } else {
+                currentSlide = 0;
+            }
+            renderSlide();
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                renderSlide();
+            }
+        }
+
+        renderSlide();
+    </script>
+</body>
+<audio id="bg-music" src="song.mp3" loop></audio>
+
+<button id="music-btn" onclick="toggleMusic()" style="position: fixed; top: 18px; right: 18px; z-index: 999; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(8px); border: 1px solid rgba(190, 91, 114, 0.3); padding: 8px 14px; border-radius: 20px; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: #701c31; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: all 0.3s ease;">🎵 Play Music</button>
+
+<script>
+function toggleMusic() {
+    const music = document.getElementById('bg-music');
+    const btn = document.getElementById('music-btn');
+    if (music.paused) {
+        music.play();
+        btn.innerText = '⏸️ Pause';
+        btn.style.background = 'rgba(190, 91, 114, 0.15)';
+    } else {
+        music.pause();
+        btn.innerText = '🎵 Play Music';
+        btn.style.background = 'rgba(255, 255, 255, 0.75)';
+    }
+}
+</script>
+</html>
