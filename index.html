@@ -148,7 +148,7 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            overflow: hidden;
+            overflow-y: auto;
             padding: 0 4px;
             position: relative;
             z-index: 2;
@@ -228,68 +228,6 @@
             color: var(--accent-deep);
             font-weight: 600;
         }
-
-        .reveal-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .reveal-card {
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(190, 91, 114, 0.25);
-            border-radius: 16px;
-            padding: 11px 14px;
-            cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            text-align: left;
-            box-shadow: 0 4px 12px rgba(112, 28, 49, 0.04);
-        }
-
-        .reveal-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-rose);
-            box-shadow: 0 8px 20px rgba(190, 91, 114, 0.12);
-        }
-
-        .reveal-header {
-            font-size: 0.86rem;
-            font-weight: 600;
-            color: var(--accent-deep);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .tap-prompt {
-            font-size: 0.72rem;
-            color: var(--accent-rose);
-            font-weight: 500;
-            font-style: italic;
-        }
-
-        .secret-body {
-            display: none;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.12rem;
-            line-height: 1.42;
-            color: #2e181e;
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px dashed rgba(190, 91, 114, 0.22);
-            font-style: italic;
-            animation: fadeUpLine 0.4s ease forwards;
-        }
-
-        .reveal-card.open {
-            background: rgba(255, 255, 255, 0.96);
-            border-color: var(--accent-rose);
-            box-shadow: 0 8px 24px rgba(190, 91, 114, 0.18);
-        }
-
-        .reveal-card.open .secret-body { display: block; }
-        .reveal-card.open .tap-prompt { display: none; }
 
         .traits-grid {
             display: flex;
@@ -625,10 +563,6 @@
             }
         }
 
-        function toggleCard(card) {
-            card.classList.toggle('open');
-        }
-
         const slides = [
             { 
                 type: 'title', 
@@ -674,53 +608,6 @@
             },
             { 
                 type: 'text', 
-                title: "Things You Don't Realize I Notice ♡", 
-                body: `
-                    <div class="reveal-container">
-                        <div class="reveal-card animate-line delay-1" onclick="toggleCard(this)">
-                            <div class="reveal-header">
-                                <span>🚗 First Meeting Memory</span>
-                                <span class="tap-prompt">Tap to see my secret reaction 🤫</span>
-                            </div>
-                            <div class="secret-body">"When you opened the car door when we first met... I pretended to be calm, but my heart was racing thinking, 'He is such a gentleman.'"</div>
-                        </div>
-
-                        <div class="reveal-card animate-line delay-2" onclick="toggleCard(this)">
-                            <div class="reveal-header">
-                                <span>🍽️ McDonald's Airport Gesture</span>
-                                <span class="tap-prompt">Tap to see my secret reaction 🤫</span>
-                            </div>
-                            <div class="secret-body">"The way you pulled out the chair for me at McDonald's... it was so natural, but it made me feel like the most cherished girl in the room."</div>
-                        </div>
-
-                        <div class="reveal-card animate-line delay-3" onclick="toggleCard(this)">
-                            <div class="reveal-header">
-                                <span>🥤 The Milkshake Moment</span>
-                                <span class="tap-prompt">Tap to see my secret reaction 🤫</span>
-                            </div>
-                            <div class="secret-body">"The way you made me sip your milkshake first... it was so sweet, I still smile thinking about it."</div>
-                        </div>
-
-                        <div class="reveal-card animate-line delay-4" onclick="toggleCard(this)">
-                            <div class="reveal-header">
-                                <span>🔐 Your Sweet Protectiveness</span>
-                                <span class="tap-prompt">Tap to see my secret reaction 🤫</span>
-                            </div>
-                            <div class="secret-body">"The possessiveness you show for me... which I secretly love so much and always make me feel adored."</div>
-                        </div>
-
-                        <div class="reveal-card animate-line delay-5" onclick="toggleCard(this)">
-                            <div class="reveal-header">
-                                <span>🏎️ Driving Together</span>
-                                <span class="tap-prompt">Tap to see my secret reaction 🤫</span>
-                            </div>
-                            <div class="secret-body">"The way you drove with one hand while holding my hand with the other... I kept looking out the window hiding a huge grin."</div>
-                        </div>
-                    </div>
-                ` 
-            },
-            { 
-                type: 'text', 
                 title: 'What Makes You You ♡', 
                 body: `
                     <div class="traits-grid">
@@ -728,8 +615,7 @@
                         <div class="trait-badge animate-line delay-2">🤍 Extremely caring & protective</div>
                         <div class="trait-badge animate-line delay-3">🌸 Incredibly polite and patient</div>
                         <div class="trait-badge animate-line delay-4">🕊️ Soft-spoken with a sweet heart</div>
-                        <div class="trait-badge animate-line delay-5">🎩 A genuine, true gentleman</div>
-                        <div class="trait-badge highlight-badge animate-line delay-6">👑 And to me… you are the bestest man. ♡</div>
+                        <div class="trait-badge highlight-badge animate-line delay-5">👑 And to me… you are the bestest man. ♡</div>
                     </div>
                 ` 
             },
@@ -751,8 +637,8 @@
                             <div>But honestly, what makes you even more amazing is the person you are.</div>
                         </div>
                         <div class="memory-card animate-line delay-4">
-                            <span class="icon">🎩</span>
-                            <div>You're caring, respectful, soft-spoken and such a gentleman.</div>
+                            <span class="icon">✨</span>
+                            <div>You're caring, respectful, and soft-spoken.</div>
                         </div>
                         <div class="memory-card animate-line delay-5" style="background: rgba(190, 91, 114, 0.12); border-color: var(--accent-rose);">
                             <span class="icon">🥹</span>
@@ -783,7 +669,7 @@
                         <div class="letter-content">
                             <p class="animate-line delay-2">To My Future Husband,</p>
                             <p class="animate-line delay-3">I built this little place because words said in passing aren't always enough to hold everything I feel for you.</p>
-                            <p class="animate-line delay-4">From opening doors and holding hands while driving to calling when I'm upset and checking in during exams—I see and treasure every single thing you do.</p>
+                            <p class="animate-line delay-4">From holding hands while driving to calling when I'm upset and checking in during exams—I see and treasure every single thing you do.</p>
                             <p class="letter-highlight animate-line delay-5">I love you a lot, more than words could ever express. I notice you, I remember you, and I appreciate you endlessly.</p>
                             <p class="animate-line delay-6">I can't wait to marry you and build our entire life together. Until then, I'll keep loving and waiting for all our beautiful days ahead.</p>
                             <div class="signature-block animate-line delay-6">
@@ -823,13 +709,17 @@
             const letterBg = document.getElementById('letter-bg');
 
             progress.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
-            document.getElementById('back-btn').style.visibility = currentSlide === 0 ? 'hidden' : 'visible';
             
+            const backBtn = document.getElementById('back-btn');
+            if (currentSlide === 0) {
+                backBtn.style.visibility = 'hidden';
+            } else {
+                backBtn.style.visibility = 'visible';
+            }
+
             const nextBtn = document.getElementById('next-btn');
             if (currentSlide === slides.length - 1) {
                 nextBtn.innerText = 'Replay ♡';
-            } else if (currentSlide === 0) {
-                nextBtn.innerText = 'Open It ♡';
             } else {
                 nextBtn.innerText = 'Continue →';
             }
@@ -842,28 +732,27 @@
                 letterBg.style.display = 'none';
             }
 
+            let html = '';
             if (slide.type === 'title') {
-                container.innerHTML = `<h1 class="animate-line delay-1">${slide.title}</h1><div class="tagline animate-line delay-2">${slide.sub}</div>`;
+                html = `
+                    <h1 class="animate-line delay-1">${slide.title}</h1>
+                    <div class="tagline animate-line delay-2">${slide.sub}</div>
+                `;
             } else if (slide.type === 'quote') {
-                container.innerHTML = `${slide.title ? '<h2 class="animate-line delay-1">' + slide.title + '</h2>' : ''}<div class="quote animate-line delay-2">${slide.body}</div>`;
-            } else if (slide.type === 'letter' || slide.type === 'thankyou') {
-                container.innerHTML = slide.body;
+                html = `<div class="quote animate-line delay-1">${slide.body}</div>`;
+            } else if (slide.type === 'text') {
+                html = `
+                    <h2 class="animate-line delay-1">${slide.title}</h2>
+                    ${slide.body}
+                `;
             } else {
-                container.innerHTML = `<h2 class="animate-line delay-1">${slide.title}</h2>${slide.body}`;
+                html = slide.body;
             }
+
+            container.innerHTML = html;
         }
 
         function nextSlide() {
-            if (currentSlide === 0) {
-                const music = document.getElementById('bg-music');
-                if (music.paused) {
-                    music.play().then(() => {
-                        document.getElementById('music-btn').innerText = '⏸️ Pause';
-                        document.getElementById('music-btn').style.background = 'rgba(190, 91, 114, 0.15)';
-                    }).catch(() => {});
-                }
-            }
-
             if (currentSlide < slides.length - 1) {
                 currentSlide++;
             } else {
@@ -883,3 +772,5 @@
     </script>
 </body>
 </html>
+
+  
